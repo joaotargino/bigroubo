@@ -7,6 +7,14 @@ $("#left0-T").prop("onclick", false);
 var frame = -1;
 
 $(function() {
+    var sound = new Howl({
+        urls: ['audio/repente.wav'],
+        autoplay: true,
+        loop: true,
+        volume: 1.0,
+        onend: function() {
+        }
+    });
 
     function sleep(milliseconds) {
         var start = new Date().getTime();
@@ -52,7 +60,15 @@ $(function() {
 
     function move(direction, quadro){
 
-        $("#audio").attr("src", "audio/tiro"+quadro+".wav");
+        var effects = new Howl({
+            urls: ['audio/sound'+quadro+'.wav'],
+            autoplay: true,
+            loop: false,
+            volume: 1.0,
+            onend: function() {
+            }
+        });
+
         //console.log($("#audio"));
             $("#"+direction + quadro).fancybox({
                 openEffect	: 'elastic',

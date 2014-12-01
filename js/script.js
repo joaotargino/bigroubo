@@ -2,7 +2,7 @@
  * Created by JoãoPaulo on 11/18/2014.
  */
 
-$("#left0-T").prop("onclick", false);
+//$("#left0-T").prop("onclick", false);
 
 var frame = -1;
 
@@ -11,7 +11,7 @@ $(function() {
         urls: ['audio/repente.wav'],
         autoplay: true,
         loop: true,
-        volume: 1.0,
+        volume: 0.70,
         onend: function() {
         }
     });
@@ -30,8 +30,9 @@ $(function() {
 
         if (gesture.up){
             console.log("closing");
-
-            parent.$.fancybox.close();
+            //retorna o zoom out pra view da pagina.
+            $("body").zoomTo({targetsize: 1.0});
+            //parent.$.fancybox.close();
         }
         else if (gesture.left) {
             frame +=1;
@@ -60,26 +61,25 @@ $(function() {
 
     function move(direction, quadro){
 
-        var effects = new Howl({
-            urls: ['audio/sound'+quadro+'.wav'],
-            autoplay: true,
-            loop: false,
-            volume: 1.0,
-            onend: function() {
-            }
-        });
 
-        //console.log($("#audio"));
-            $("#"+direction + quadro).fancybox({
-                openEffect	: 'elastic',
-                closeEffect	: 'elastic',
 
-                helpers : {
-                    title : {
-                        type : 'inside'
-                    }
-                }
-            });
+
+        $("#"+direction + quadro).zoomTo({targetsize:0.5, duration:600});
+
+        //.zoomTarget();
+
+
+
+        //    $("#"+direction + quadro).fancybox({
+        //        openEffect	: 'elastic',
+        //        closeEffect	: 'elastic',
+        //
+        //        helpers : {
+        //            title : {
+        //                type : 'inside'
+        //            }
+        //        }
+        //    });
         if(quadro == 0){
             $("#" + direction + "-T" + quadro).attr("src", "img/cover-T.png");
         }
@@ -90,9 +90,19 @@ $(function() {
             $("#" + direction + "-T" + quadro).attr("src", "img/" + direction + quadro + "-T.png");
 
         }
-        $("#"+direction+quadro).click();
-        var y = $(window).scrollTop();  //your current y position on the page
-        $(window).scrollTop(y+100);
+        //$("#"+direction+quadro).click();
+        //var y = $(window).scrollTop();  //your current y position on the page
+        //$(window).scrollTop(y+100);
+
+        sleep(1000);
+        var effects = new Howl({
+            urls: ['audio/sound'+quadro+'.wav'],
+            autoplay: true,
+            loop: false,
+            volume: 1.0,
+            onend: function() {
+            }
+        });
 
     }
     }, false);

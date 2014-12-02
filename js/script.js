@@ -2,19 +2,20 @@
  * Created by JoãoPaulo on 11/18/2014.
  */
 
-//$("#left0-T").prop("onclick", false);
+$("#left0-T").prop("onclick", false);
 
 var frame = -1;
 
 $(function() {
-    var sound = new Howl({
-        urls: ['audio/repente.mp3', 'audio/repente.wav'],
-        autoplay: true,
-        loop: true,
-        volume: 0.50,
-        onend: function() {
-        }
-    });
+    //recolocar isso aqui =P
+    //var sound = new Howl({
+    //    urls: ['audio/repente.mp3', 'audio/repente.wav'],
+    //    autoplay: true,
+    //    loop: true,
+    //    volume: 0.50,
+    //    onend: function() {
+    //    }
+    //});
 
     function sleep(milliseconds) {
         var start = new Date().getTime();
@@ -28,15 +29,15 @@ $(function() {
     /* add gest.js controls */
     document.addEventListener('gest', function(gesture) {
 
-        if (gesture.up || gesture.direction == "Long up"){
+        if (gesture.up ){
             console.log("closing");
             //retorna o zoom out pra view da pagina.
             $("body").zoomTo({targetsize: 1.0});
             //parent.$.fancybox.close();
-            window.setTimeout(function() {
-                ativo = true;
-                messageContainer.setAttribute('style', 'display: none;');
-            }, 0);
+            //window.setTimeout(function() {
+            //    ativo = true;
+            //    messageContainer.setAttribute('style', 'display: none;');
+            //}, 0);
         }
         else if (gesture.left) {
             frame +=1;
@@ -53,7 +54,7 @@ $(function() {
             }
             else move("right", frame);
 
-        } else if (gesture.down || gesture.direction == "Long down") {
+        } else if (gesture.down ) {
             frame +=1;
             console.log("down " + frame);
             if(frame == 0  || frame == 5){
@@ -85,7 +86,7 @@ $(function() {
         //        }
         //    });
         if(quadro == 0){
-            //$("#" + direction + "-T" + quadro).attr("src", "img/cover-T.png");
+            $("#" + direction + "-T" + quadro).attr("src", "img/cover-T.png");
         }
         else if (quadro == 5){
             $("#" + direction + "-T" + quadro).attr("src", "img/back-T.png");
@@ -99,14 +100,14 @@ $(function() {
         //$(window).scrollTop(y+100);
 
         sleep(1000);
-        var effects = new Howl({
-            urls: ['audio/sound'+quadro+'.mp3', 'audio/sound'+quadro+'.wav'],
-            autoplay: true,
-            loop: false,
-            volume: 1.0,
-            onend: function() {
-            }
-        });
+        //var effects = new Howl({
+        //    urls: ['audio/sound'+quadro+'.mp3', 'audio/sound'+quadro+'.wav'],
+        //    autoplay: true,
+        //    loop: false,
+        //    volume: 1.0,
+        //    onend: function() {
+        //    }
+        //});
 
     }
     }, false);

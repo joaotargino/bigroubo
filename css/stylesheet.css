@@ -7,6 +7,7 @@ p{
 }
 #TOP{
     width: 50%;
+    height: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -17,19 +18,15 @@ p{
     box-shadow: none;
 }
 
-#PAGE{
-    height:50%;
-    width: 50%;
-    margin: 0;
-    padding: 0;
-    border: 0;
+#LOGO img{
+    width: 600px;
+    /*height: 50%;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
 }
-#pg td img{
-    vertical-align: middle;
-    text-align: center;
-    position: absolute;
 
-}
 
 #BOTTOM{
     width: 50%;
@@ -41,7 +38,7 @@ p{
     height: 600px;
     width: 800px;
     box-shadow: none;
-    margin-right: 20px;
+    /*margin-right: 20px;*/
 }
 
 #PATH{

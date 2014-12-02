@@ -1,3 +1,4 @@
+
 p{
     text-align: center;
     font-family: cursive;
@@ -11,9 +12,23 @@ p{
     margin-right: auto;
 }
 #TOP td img{
-    height: 200px;
-    width: 930px;
+    height: 600px;
+    width: 800px;
     box-shadow: none;
+}
+
+#PAGE{
+    height:50%;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#pg td img{
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+
 }
 
 #BOTTOM{
@@ -23,9 +38,10 @@ p{
     margin-right: auto;
 }
 #BOTTOM td img{
-    height: 200px;
-    width: 930px;
+    height: 600px;
+    width: 800px;
     box-shadow: none;
+    margin-right: 20px;
 }
 
 #PATH{

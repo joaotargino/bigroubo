@@ -85,7 +85,7 @@ $(function() {
         //        }
         //    });
         if(quadro == 0){
-            $("#" + direction + "-T" + quadro).attr("src", "img/cover-T.png");
+            //$("#" + direction + "-T" + quadro).attr("src", "img/cover-T.png");
         }
         else if (quadro == 5){
             $("#" + direction + "-T" + quadro).attr("src", "img/back-T.png");

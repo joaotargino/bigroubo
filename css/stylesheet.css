@@ -22,13 +22,21 @@ p{
     box-shadow: none;
 }
 
-#LOGO img{
-    width: 600px;
-    /*height: 50%;*/
+#LOGO{
+    width: 50%;
+    height: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    text-align:center;
+}
+
+#LOGO img{
+    width: 50%;
+    height: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 

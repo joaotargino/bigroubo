@@ -9,7 +9,7 @@ var frame = -1;
 $(function() {
     //recolocar isso aqui =P
     var sound = new Howl({
-        urls: ['audio/repente.mp3', 'audio/repente.wav'],
+        urls: ['audio/soundtrack.mp3', 'audio/repente.wav'],
         autoplay: true,
         loop: true,
         volume: 0.50,

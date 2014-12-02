@@ -8,10 +8,10 @@ var frame = -1;
 
 $(function() {
     var sound = new Howl({
-        urls: ['audio/repente.wav'],
+        urls: ['audio/repente.mp3', 'audio/repente.wav'],
         autoplay: true,
         loop: true,
-        volume: 0.70,
+        volume: 0.50,
         onend: function() {
         }
     });
@@ -28,11 +28,15 @@ $(function() {
     /* add gest.js controls */
     document.addEventListener('gest', function(gesture) {
 
-        if (gesture.up){
+        if (gesture.up || gesture.direction == "Long up"){
             console.log("closing");
             //retorna o zoom out pra view da pagina.
             $("body").zoomTo({targetsize: 1.0});
             //parent.$.fancybox.close();
+            window.setTimeout(function() {
+                ativo = true;
+                messageContainer.setAttribute('style', 'display: none;');
+            }, 0);
         }
         else if (gesture.left) {
             frame +=1;
@@ -49,7 +53,7 @@ $(function() {
             }
             else move("right", frame);
 
-        } else if (gesture.down) {
+        } else if (gesture.down || gesture.direction == "Long down") {
             frame +=1;
             console.log("down " + frame);
             if(frame == 0  || frame == 5){
@@ -96,7 +100,7 @@ $(function() {
 
         sleep(1000);
         var effects = new Howl({
-            urls: ['audio/sound'+quadro+'.wav'],
+            urls: ['audio/sound'+quadro+'.mp3', 'audio/sound'+quadro+'.wav'],
             autoplay: true,
             loop: false,
             volume: 1.0,

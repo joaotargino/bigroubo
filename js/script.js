@@ -8,14 +8,14 @@ var frame = -1;
 
 $(function() {
     //recolocar isso aqui =P
-    //var sound = new Howl({
-    //    urls: ['audio/repente.mp3', 'audio/repente.wav'],
-    //    autoplay: true,
-    //    loop: true,
-    //    volume: 0.50,
-    //    onend: function() {
-    //    }
-    //});
+    var sound = new Howl({
+        urls: ['audio/repente.mp3', 'audio/repente.wav'],
+        autoplay: true,
+        loop: true,
+        volume: 0.50,
+        onend: function() {
+        }
+    });
 
     function sleep(milliseconds) {
         var start = new Date().getTime();

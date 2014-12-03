@@ -1,26 +1,123 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>The Big Roubo</title>
-</head>
-<body background="img/background.png">
+﻿<html lang="en"><head>
+		<meta charset="utf-8">
+		<!-- include js -->
+		<script src="js/gest.js"></script>
+		<script src="js/howler.js"></script>
+	<body>
 
-<a href="hq.html"> <img  src="img/logo.png" /> </a></td>
-<p>
-    Gestos: Cima da zoom out com visao geral da página
-    </p>
-<p>
-    Escolha uma coluna para seguir a história, faça o gesto para a esquerda para escolher a figura mais à esquerda
-</p>
-<p>
-    Acenando para baixo será escolhida a figura do meio.
-</p>
-<p>
-    Acenando para a direita, será escolhida a figura mais à direita.
-</p>
+		<script type="text/javascript">
+			//create message container
+			var ativo = true;
 
-<a href="hq.html" > Ir para a HQ </a>
+			var cont = 0;
+			var PAGINA_INICIAL = 0;
+			var PAGINA_ESCOLHA = 1;
+			var INSTRUCOES = 2;
+			var INFORMACOES = 3;
+			var HQ = 4;
 
-</body>
-</html>
+			var messageContainer = document.createElement('div');
+			messageContainer.className = 'gest-message';
+			document.body.appendChild(messageContainer);
+			
+			var styles = {
+				positioning: 'margin: 22% auto; min-width: 100px; max-width: 400px; width: 80%; padding: 15px;',
+				copy: 'font: normal 35px/1.1 \"Helvetica Neue\", Helvetica, Arial, sans-serif; color: #fff; font-size: 45px; text-align: center;',
+				general: 'display: block; background-color: #000; z-index: 100; border-radius: 10px;'
+			}, messageContainerStyle = styles.positioning + styles.copy + styles.general;
+
+			var stylesHQ = {
+				copy: 'text-align: center;'
+			};
+
+
+			messageContainer.innerHTML = '<img width=50% height=50% src="img/logo.png" alt="" />'
+			messageContainer.innerHTML += '<h3> IMPORTANTE: Para usar a aplicação é preciso que você tenha dado acesso a sua webcam.</h3><br>'
+			messageContainer.innerHTML += '<h3> Mova sua mão para esquerda, direita, cima e/ou baxo para dar comandos à aplicação</3><br><br><br>'
+			messageContainer.innerHTML += '<img width="900" height="250" id="left-T1" src="img/cover-T.png" alt="" /><br>'
+			messageContainer.setAttribute('style', stylesHQ.copy);
+
+	
+			gest.options.subscribeWithCallback(function(gesture) {
+				var message = '';
+
+				if((gesture.direction == 'Up' || gesture.direction == 'Long up') && cont != PAGINA_INICIAL && cont != PAGINA_ESCOLHA){
+					ativo = true;
+					cont = PAGINA_ESCOLHA;
+				}			
+
+				if(ativo){
+					
+					if (cont == PAGINA_INICIAL){
+						ativo = false;
+						cont = PAGINA_ESCOLHA;
+
+						if (gesture.direction) {
+							message = "Bixim, é assim mermo visse!? =D"
+						} else {
+							message = gesture.error.message;
+						} 
+					
+						messageContainer.innerHTML = '<p style=\"margin:0\">' + message + '</p>';
+						messageContainer.setAttribute('style', messageContainerStyle);
+
+						window.setTimeout(function() {
+							ativo = true;
+							messageContainer.innerHTML = '<h1>Menu Inicial</h1>';
+							messageContainer.innerHTML += '<br><br><br><br><img width="900" height="400" id="left-T1" src="img/menu.png" alt="" />'
+							messageContainer.setAttribute('style', stylesHQ.copy);
+						}, 3000);
+					} 
+
+					else if (cont == PAGINA_ESCOLHA){
+						
+						messageContainer.innerHTML = '<h1>Menu Inicial</h1>'
+						messageContainer.innerHTML += '<br><br><br><br><img width="900" height="400" id="left-T1" src="img/menu.png" alt="" />'
+						messageContainer.setAttribute('style', stylesHQ.copy);
+						
+						if(gesture.direction == 'Down' || gesture.direction == 'Long down'){
+							cont = HQ
+						} else if(gesture.direction == 'Left'){
+							cont = INFORMACOES;
+						} else if(gesture.direction == 'Right'){
+							cont = INSTRUCOES;
+						}
+					}
+
+
+					if (cont == INSTRUCOES){
+						ativo = false;
+						messageContainer.innerHTML = '<br><br><h1>Instruções:</h1>'
+						messageContainer.innerHTML += '<h3>      * Na HQ você poderá escolher 3 ângulos da historia!</h3>'
+						messageContainer.innerHTML += '<h3>      * Para a ESQUERDA você irá pelo primeiro ângulo</h3>'
+						messageContainer.innerHTML += '<h3>      * Para BAIXO você irá pelo segundo ângulo</h3>'
+						messageContainer.innerHTML += '<h3>      * Para a DIREITA você irá pelo terceiro ângulo</h3>'
+						messageContainer.innerHTML += '<h3>      * Para CIMA você volta a visão geral do quadrinho</h3>'
+
+						messageContainer.innerHTML += '<br><br><br><h2>Para sair dessa pagina você tem que gesticular para cima!</h2>'
+
+						
+					} else if (cont == INFORMACOES){
+						ativo = false;
+						messageContainer.innerHTML = '<br><br><h1>Desenvolvedores</h1>'
+						messageContainer.innerHTML += '<h3> Arthur Holanda</h3>'
+						messageContainer.innerHTML += '<h3> Bernado Barbosa</h3>'
+						messageContainer.innerHTML += '<h3> Daniela Ferreira</h3>'
+						messageContainer.innerHTML += '<h3> João Paulo Targino</h3>'
+						messageContainer.innerHTML += '<h3> Juca Gonzaga</h3>'
+						messageContainer.innerHTML += '<h3> Isabelle Cardoso</h3>'
+						messageContainer.innerHTML += '<h3> Werton Guimarães</h3>'
+
+						messageContainer.innerHTML += '<br><br><br><h2>Para voltar a pagina anterior você tem que gesticular para cima!</h2>'
+						messageContainer.setAttribute('style', stylesHQ.copy);
+					} else if (cont == HQ){
+						ativo = false;
+						var win = window.open("hq.html", "_self");
+						win.focus();
+					}
+				}					
+			});
+
+			gest.start();
+
+</script>
